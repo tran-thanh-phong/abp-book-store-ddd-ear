@@ -9,9 +9,9 @@
       <div class="text-end col col-md-6">
          <!-- Add the "new book" button here -->
          <div class="text-lg-end pt-2">
-          <button id="create" class="btn btn-primary" type="button" (click)="createBook()">
+          <button *abpPermission="'BookStore.Books.Create'" id="create" class="btn btn-primary" type="button" (click)="createBook()">
             <i class="fa fa-plus me-1"></i>
-            <span>{{ "::NewBook" | abpLocalization }}</span>
+            <span>{{ '::NewBook' | abpLocalization }}</span>
           </button>
         </div>
       </div>
@@ -35,11 +35,13 @@
               <i class="fa fa-cog me-1"></i>{{ '::Actions' | abpLocalization }}
             </button>
             <div ngbDropdownMenu>
-              <button ngbDropdownItem (click)="editBook(row.id)">
+              <!-- Add the abpPermission directive -->
+              <button *abpPermission="'BookStore.Books.Edit'" ngbDropdownItem (click)="editBook(row.id)">
                 {{ '::Edit' | abpLocalization }}
               </button>
-              <!-- add the Delete button -->
-              <button ngbDropdownItem (click)="delete(row.id)">
+
+              <!-- Add the abpPermission directive -->
+              <button *abpPermission="'BookStore.Books.Delete'" ngbDropdownItem (click)="delete(row.id)">
                 {{ '::Delete' | abpLocalization }}
               </button>
             </div>
